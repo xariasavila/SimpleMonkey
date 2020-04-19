@@ -12,24 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class registroUsuario extends AppCompatActivity {
+public class AccountRegister extends AppCompatActivity {
 
-    Button btnRegistrarUsuario;
+    Button btnRegister;
     Spinner spinYear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro_usuario);
+        setContentView(R.layout.activity_account_register);
 
-
-        //---REFRENCIA---//
-
-        btnRegistrarUsuario = findViewById(R.id.btnRegistrarUsuario);
+        // REFERENCIA
+        btnRegister = findViewById(R.id.btnRegister);
         spinYear=(Spinner)findViewById(R.id.spinYear);
 
-
-        ///------------ARRAY LIST DEL SPINNER -------------//
+        // ARRAY LIST DEL SPINNER
         ArrayList<String> years = new ArrayList<String>();
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = 1930; i <= thisYear; i++) {
@@ -39,25 +36,14 @@ public class registroUsuario extends AppCompatActivity {
 
         Spinner spinYear = (Spinner)findViewById(R.id.spinYear);
         spinYear.setAdapter(adapter);
-        ///------------FIN ARRAY LIST DEL SPINNER -------------//
 
-
-
-
-
-        ////////////-------------------------------------TEXTVIEW REDIRECT A REGISTRO USUARIO ----------------------------------------------------------//
-        btnRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
+        // REDIRECT A REGISTRO USUARIO
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), NuevoGasto.class);
+                Intent intent = new Intent(v.getContext(), ExpenseCreate.class);
                 startActivity(intent);
             }
         });
-
-        ////////////-------------------------------------TEXTVIEW REDIRECT A REGISTRO USUARIO ----------------------------------------------------------//
-
-
-
-
     }
 }
