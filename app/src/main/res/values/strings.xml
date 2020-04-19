@@ -1,5 +1,68 @@
 <resources>
-    <string name="app_name">SIMPLEMONKEY</string>
+    <string name="app_name">SimpleMonkey</string>
     <string name="app_id">$app_id_here</string>
 
+    <!-- UI -->
+    <string name="agree">Aceptar</string>
+    <string name="register">Registrar</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="loading">Cargando</string>
+    <string name="account">Cuenta</string>
+    <string name="view_more">Ver más</string>
+    <string name="back">Volver</string>
+    <string name="done">Listo</string>
+
+
+    <!-- Entities -->
+    <string name="category">Categoría</string>
+    <string name="categories">Categorías</string>
+    <string name="income">Ingreso</string>
+    <string name="incomes">Ingresos</string>
+    <string name="budget">Presupuesto</string>
+    <string name="budgets">Presupuestos</string>
+    <string name="debt">Deuda</string>
+    <string name="debts">Deudas</string>
+    <string name="borrow">Préstamo</string>
+    <string name="borrows">Préstamos</string>
+    <string name="saving">Ahorro</string>
+    <string name="savings">Ahorros</string>
+    <string name="user">Usuario</string>
+    <string name="users">Usuarios</string>
+
+    <!-- User Entity -->
+    <string name="firstname">Nombre</string>
+    <string name="lastname">Apellido</string>
+    <string name="email">Email</string>
+    <string name="gender">Género</string>
+    <string name="password">Contraseña</string>
+    <string name="repeat_password">Repetir contraseña</string>
+    <string name="country">País</string>
+    <string name="birth_date">Fecha de nacimiento</string>
+    <string name="age">Edad</string>
+
+    <!-- Finances -->
+    <string name="name">Nombre</string>
+    <string name="description">Descripción</string>
+    <string name="date">Fecha</string>
+    <string name="amount">Monto</string>
+    <string name="currency">Moneda</string>
+    <string name="fee">Cuota</string>
+    <string name="fees">Cuotas</string>
+    <string name="fee_number">Número de cuotas</string>
+    <string name="payday">Día de pago</string>
+    <string name="payday_monthly">Día de pago mensual</string>
+    <string name="recurrent">Recurrente</string>
+
+    <!-- Buttons -->
+    <string name="btn_login">Ingresar</string>
+    <string name="btn_register">Registrarse</string>
+
+    <!-- Login View -->
+    <string name="login_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="login_no_account">¿Aún no tienes una cuenta?</string>
+    <string name="login_register_now">Regístrate gratis ahora</string>
+
+    <!-- Register View -->
+    <string name="register_agree_terms">Acepto términos y condiciones</string>
 </resources>
