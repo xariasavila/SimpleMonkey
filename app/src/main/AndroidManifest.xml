@@ -10,22 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".NuevoGasto" />
+        <activity android:name=".ExpenseCreate" />
         <activity android:name=".MyAccount" />
-        <activity android:name=".Login" />
+        <activity android:name=".AccountLogin" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/app_id" />
 
-        <activity android:name=".registroUsuario" />
+        <activity android:name=".AccountRegister" />
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".SplashScreen"
-            android:theme="@style/Sintema">
+        <activity android:name=".SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
