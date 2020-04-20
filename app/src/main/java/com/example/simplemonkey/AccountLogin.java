@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class AccountLogin extends AppCompatActivity {
 
-    TextInputLayout tilEmail, tilPassword;
+    private TextInputLayout tilEmail, tilPassword;
     Button btnLogin;
     TextView tvRegister;
 

@@ -20,11 +20,11 @@ public class SplashScreen extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable(){
             public void run(){
-                Intent intent = new Intent(SplashScreen.this, AccountLogin.class);
-                startActivity(intent);
-                finish();
-            };
-        }, TIMEOUT);
+            Intent intent = new Intent(SplashScreen.this, AccountLogin.class);
+            startActivity(intent);
+            finish();
+        };
+    }, TIMEOUT);
     }
 }
 
