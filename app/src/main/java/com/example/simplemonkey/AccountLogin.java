@@ -14,6 +14,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class AccountLogin extends AppCompatActivity {
 
     private TextInputLayout tilEmail, tilPassword;
+    String email,pass;
     Button btnLogin;
     TextView tvRegister;
 
@@ -37,6 +38,30 @@ public class AccountLogin extends AppCompatActivity {
             startActivity(intent);
             }
         });
+
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email =  tilEmail.getEditText().getText().toString();
+                pass = tilPassword.getEditText().getText().toString();
+
+                if(email.length()>0 && pass.length()>0){
+                    Intent intent = new Intent(v.getContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+                if (email.length()==0){
+                    tilEmail.setError("Ingrese usuario");
+                }
+                if (pass.length()==0){
+                    tilPassword.setError("Ingrese contraseña");
+                }
+
+
+            }
+        });
+
+
     }
 
 

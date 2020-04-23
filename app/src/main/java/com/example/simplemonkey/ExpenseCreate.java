@@ -19,7 +19,7 @@ public class ExpenseCreate extends AppCompatActivity {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            final String selectedDate = year + "-" + (month+1) + "-" + (day < 10 ? "0"+day : day);
+                final String selectedDate = String.format("%02d/%02d/%d", day,(month +1), year);
             til.getEditText().setText(selectedDate);
             }
         });

@@ -65,4 +65,7 @@
 
     <!-- Register View -->
     <string name="register_agree_terms">Acepto términos y condiciones</string>
+    <string name="terms"> <a href="https://www.lipsum.com/">Términos y condiciones</a></string>
+
+
 </resources>
