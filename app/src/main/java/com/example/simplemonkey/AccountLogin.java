@@ -14,7 +14,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class AccountLogin extends AppCompatActivity {
 
     private TextInputLayout tilEmail, tilPassword;
-    String email,pass;
+    String strEmail,strPass;
     Button btnLogin;
     TextView tvRegister;
 
@@ -23,6 +23,8 @@ public class AccountLogin extends AppCompatActivity {
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_login);
+
+        getSupportActionBar().hide();  // OCULTA LA APPBAR DEL SPLASH
 
         // REFERENCIAS
         tilEmail = findViewById(R.id.tilEmail);
@@ -43,17 +45,17 @@ public class AccountLogin extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                email =  tilEmail.getEditText().getText().toString();
-                pass = tilPassword.getEditText().getText().toString();
+                strEmail =  tilEmail.getEditText().getText().toString();
+                strPass = tilPassword.getEditText().getText().toString();
 
-                if(email.length()>0 && pass.length()>0){
+                if(strEmail.length()>0 && strPass.length()>0){
                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                     startActivity(intent);
                 }
-                if (email.length()==0){
+                if (strEmail.length()==0){
                     tilEmail.setError("Ingrese usuario");
                 }
-                if (pass.length()==0){
+                if (strPass.length()==0){
                     tilPassword.setError("Ingrese contraseña");
                 }
 

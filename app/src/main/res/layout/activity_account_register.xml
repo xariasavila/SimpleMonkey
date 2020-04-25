@@ -25,8 +25,8 @@
 
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="128dp"
+                android:layout_width="302dp"
+                android:layout_height="105dp"
                 android:layout_marginBottom="16dp"
                 android:contentDescription="@string/app_name"
                 app:srcCompat="@drawable/icon" />
@@ -41,9 +41,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/firstname"
-                    android:textColorLink="#FBC02D"
                     android:inputType="textCapSentences|textAutoCorrect"
-                    />
+                    android:textColorLink="#FBC02D" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -56,8 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/lastname"
-                    android:inputType="textCapSentences|textAutoCorrect"
-                    />
+                    android:inputType="textCapSentences|textAutoCorrect" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -71,20 +69,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email"
-                    android:inputType="textCapSentences|textAutoCorrect"
-                    />
+                    android:inputType="textCapSentences|textAutoCorrect" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilGender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="210dp"
+                android:layout_height="120dp"
                 android:layout_marginBottom="8dp">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender" />
+
+                <Spinner
+                    android:id="@+id/spGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/gender" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:gravity="center" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -111,8 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
-                    android:inputType="textAutoCorrect"
-                    />
+                    android:inputType="textAutoCorrect" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/repeat_password"
-                    android:inputType="textAutoCorrect"/>
+                    android:inputType="textAutoCorrect" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -134,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
 
             <CheckBox
                 android:id="@+id/cbTerms"
@@ -157,8 +162,8 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimary"
                 android:elevation="2dp"
-                android:text="@string/btn_register"
-                android:onClick="loguearCheckbox"/>
+                android:text="@string/btn_register" />
+
         </LinearLayout>
     </ScrollView>
 
