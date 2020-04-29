@@ -74,8 +74,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilGender"
-                android:layout_width="210dp"
-                android:layout_height="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp">
 
                 <TextView
@@ -89,7 +89,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,13 +112,14 @@
                 android:id="@+id/tilPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
-                    android:inputType="textAutoCorrect" />
+                    android:inputType="textAutoCorrect|textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,13 +127,14 @@
                 android:id="@+id/tilRePassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/repeat_password"
-                    android:inputType="textAutoCorrect" />
+                    android:inputType="textAutoCorrect|textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout

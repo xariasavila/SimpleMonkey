@@ -1,6 +1,7 @@
 package com.example.simplemonkey;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -17,13 +18,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.simplemonkey.ui.GenderSelected;
 import com.example.simplemonkey.ui.DatePickerFragment;
+import com.example.simplemonkey.utils.InputValidator;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class AccountRegister extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
 
     private Button btnRegister;
-    String strFirstname,strLastname,strEmail,strGender,strBirth,strPass,strRepass;
-    private TextInputLayout tilFirstname,tilLastname,tilEmail,tilBirth,tilPassword,tilRePassword;
+    String strFirstname, strLastname, strEmail, strGender, strBirth, strPass, strRepass;
+    private TextInputLayout tilFirstname, tilLastname, tilEmail, tilBirth, tilPassword, tilRePassword;
     private TextView tvTerms;
     private CheckBox cbTerms;
     private Spinner spnGender;
@@ -47,10 +52,8 @@ public class AccountRegister extends AppCompatActivity  implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_register);
 
-        // link terminos y condiciones
-        tvTerms.setMovementMethod(LinkMovementMethod.getInstance());
-
-
+        // ESTE LINK TIENE CONFLICTOS
+        // tvTerms.setMovementMethod(LinkMovementMethod.getInstance());
 
         // REFERENCIA
         btnRegister = findViewById(R.id.btnRegister);
@@ -72,13 +75,11 @@ public class AccountRegister extends AppCompatActivity  implements AdapterView.O
             }
         });
 
-
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         spnGender.setOnItemSelectedListener(this);
-        GenderSelected customAdapter=new GenderSelected(getApplicationContext(),genderInt,genderString);
+        GenderSelected customAdapter = new GenderSelected(getApplicationContext(), genderInt, genderString);
         spnGender.setAdapter(customAdapter);
 
-        // REDIRECT A REGISTRO USUARIO
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,38 +93,24 @@ public class AccountRegister extends AppCompatActivity  implements AdapterView.O
                 strPass = tilPassword.getEditText().getText().toString();
                 strRepass = tilRePassword.getEditText().getText().toString();
 
+                InputValidator inputValidator = new InputValidator(AccountRegister.this);
 
-                if (strFirstname.length() > 0 && strLastname.length() > 0 && strEmail.length() > 0 && strBirth.length() > 0
-                        && strPass.length() > 0 && strRepass.length() > 0 && (strPass.equals(strRepass) == true) && cbTerms.isChecked()) {
-                    Intent intent = new Intent(v.getContext(),MainActivity.class);
-                    startActivity(intent);
-                } else {
-                    //Corregir, si está checkeado ,pero con campos vacios igual arroja mensaje
-                Toast.makeText(AccountRegister.this, "Debe aceptar terminos y condiciones", Toast.LENGTH_SHORT).show();
-                }
+                inputValidator.isRequired(tilFirstname);
+                inputValidator.isRequired(tilLastname);
+                inputValidator.isEmail(tilEmail);
+                inputValidator.isRequired(tilFirstname);
+                inputValidator.isRequired(tilBirth);
+                inputValidator.isRequired(tilPassword);
+                inputValidator.isRequired(tilRePassword);
+                inputValidator.isEqual(tilRePassword, tilPassword);
 
-                if (strFirstname.length() == 0) {
-                    tilFirstname.setError("Campo obligatorio");
-                }
-                if (strLastname.length() == 0) {
-                    tilLastname.setError("Campo obligatorio");
-                }
-                if (strEmail.length() == 0) {
-                    tilEmail.setError("Campo obligatorio");
-                }
-
-                if (strBirth.length() == 0) {
-                    tilBirth.setError("Campo obligatorio");
-                }
-                if (strPass.length() == 0) {
-                    tilPassword.setError("Campo obligatorio");
-                }
-                if (strRepass.length() == 0) {
-                    tilRePassword.setError("Campo obligatorio");
-                }
-                if ((strRepass.equals(strPass) == false)) {
-                    tilRePassword.setError("Contraseña no coincide");
-
+                if (inputValidator.validate()) {
+                    if (cbTerms.isChecked()) {
+                        Intent intent = new Intent(v.getContext(), MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(AccountRegister.this, getString(R.string.error_terms), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

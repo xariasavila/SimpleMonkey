@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.simplemonkey.utils.InputValidator;
 import com.facebook.FacebookSdk;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -41,25 +42,21 @@ public class AccountLogin extends AppCompatActivity {
             }
         });
 
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                strEmail =  tilEmail.getEditText().getText().toString();
+                strEmail = tilEmail.getEditText().getText().toString();
                 strPass = tilPassword.getEditText().getText().toString();
 
-                if(strEmail.length()>0 && strPass.length()>0){
+                InputValidator inputValidator = new InputValidator(AccountLogin.this);
+
+                inputValidator.isEmail(tilEmail);
+                inputValidator.isRequired(tilPassword);
+
+                if(inputValidator.validate()){
                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                     startActivity(intent);
                 }
-                if (strEmail.length()==0){
-                    tilEmail.setError("Ingrese usuario");
-                }
-                if (strPass.length()==0){
-                    tilPassword.setError("Ingrese contraseña");
-                }
-
-
             }
         });
 
