@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def secretPropertiesFile = rootProject.file("secret.properties")
+def secretProperties = new Properties()
+secretProperties.load(new FileInputStream(secretPropertiesFile))
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -12,6 +16,9 @@ android {
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "ENVIRONMENT", secretProperties['ENVIRONMENT'])
+        buildConfigField("String", "DB_NAME", secretProperties['DB_NAME'])
+        buildConfigField("String", "API_URI", secretProperties['API_URI'])
     }
 
     buildTypes {
@@ -25,6 +32,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     api 'com.google.android.material:material:1.1.0-alpha06'
     implementation 'com.facebook.android:facebook-login:[4,5)'
     implementation 'androidx.appcompat:appcompat:1.1.0'
