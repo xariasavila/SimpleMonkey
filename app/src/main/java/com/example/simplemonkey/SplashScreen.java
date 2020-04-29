@@ -11,8 +11,10 @@ public class SplashScreen extends AppCompatActivity {
 
     private final int TIMEOUT = 2000;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();  // OCULTA LA APPBAR DEL SPLASH
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -25,6 +27,7 @@ public class SplashScreen extends AppCompatActivity {
             finish();
         };
     }, TIMEOUT);
+
     }
 }
 
