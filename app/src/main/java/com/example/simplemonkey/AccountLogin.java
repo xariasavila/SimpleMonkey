@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.simplemonkey.utils.InputValidator;
 import com.facebook.FacebookSdk;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class AccountLogin extends AppCompatActivity {
 
     private TextInputLayout tilEmail, tilPassword;
+    String strEmail,strPass;
     Button btnLogin;
     TextView tvRegister;
 
@@ -22,6 +24,8 @@ public class AccountLogin extends AppCompatActivity {
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_login);
+
+        getSupportActionBar().hide();  // OCULTA LA APPBAR DEL SPLASH
 
         // REFERENCIAS
         tilEmail = findViewById(R.id.tilEmail);
@@ -37,6 +41,26 @@ public class AccountLogin extends AppCompatActivity {
             startActivity(intent);
             }
         });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                strEmail = tilEmail.getEditText().getText().toString();
+                strPass = tilPassword.getEditText().getText().toString();
+
+                InputValidator inputValidator = new InputValidator(AccountLogin.this);
+
+                inputValidator.isEmail(tilEmail);
+                inputValidator.isRequired(tilPassword);
+
+                if(inputValidator.validate()){
+                    Intent intent = new Intent(v.getContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+
     }
 
 

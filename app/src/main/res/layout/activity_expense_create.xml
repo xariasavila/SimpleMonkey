@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -25,7 +26,7 @@
             <ImageView
                 android:id="@+id/logo"
                 android:layout_width="wrap_content"
-                android:layout_height="128dp"
+                android:layout_height="110dp"
                 android:layout_marginBottom="16dp"
                 android:contentDescription="@string/app_name"
                 app:srcCompat="@drawable/icon" />
@@ -40,6 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/name"
+                    android:inputType="textCapSentences|textAutoCorrect"
                     android:textColorLink="#FBC02D" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,7 +54,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/amount" />
+                    android:hint="@string/amount"
+                    android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -77,8 +80,9 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/description" />
+                    android:layout_height="115dp"
+                    android:hint="@string/description"
+                    android:inputType="textCapSentences|textAutoCorrect" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
