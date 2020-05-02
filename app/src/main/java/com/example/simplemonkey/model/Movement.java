@@ -1,9 +1,12 @@
 package com.example.simplemonkey.model;
 
+import androidx.annotation.Nullable;
+
 import java.io.Serializable;
 import java.util.Date;
 
-public class Expense extends Finance implements Serializable {
+public class Movement extends Finance implements Serializable {
+    private boolean income;
     private int feeNumber;
     private int payday;
     private boolean done;
@@ -12,8 +15,9 @@ public class Expense extends Finance implements Serializable {
     private int debtId;
     private int borrowId;
 
-    public Expense(int id, int uid, String name, String description, Date date, double amount, String currency, Boolean sync, String coordinates, Date createdAt, Date updatedAt, int feeNumber, int payday, boolean done, int categoryId, int budgetId, int debtId, int borrowId) {
+    public Movement(int id, int uid, String name, String description, Date date, double amount, String currency, Boolean sync, String coordinates, Date createdAt, Date updatedAt, boolean income, int feeNumber, int payday, boolean done, int categoryId, int budgetId, int debtId, int borrowId) {
         super(id, uid, name, description, date, amount, currency, sync, coordinates, createdAt, updatedAt);
+        this.income = income;
         this.feeNumber = feeNumber;
         this.payday = payday;
         this.done = done;
@@ -23,10 +27,17 @@ public class Expense extends Finance implements Serializable {
         this.borrowId = borrowId;
     }
 
-    public Expense(int uid, String name, String description, Date date, double amount, String currency, int categoryId, int payday) {
+    public Movement(int uid, String name, String description, Date date, double amount, String currency, boolean income) {
         super(uid, name, description, date, amount, currency);
-        this.categoryId = categoryId;
-        this.payday = payday;
+        this.income = income;
+    }
+
+    public boolean isIncome() {
+        return income;
+    }
+
+    public void setIncome(boolean income) {
+        this.income = income;
     }
 
     public int getBudgetId() {

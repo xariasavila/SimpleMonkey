@@ -41,9 +41,9 @@ public class GenderSelected extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.spinnergenero, null);
+        view = inflter.inflate(R.layout.spinner_gender, null);
         ImageView icon = (ImageView) view.findViewById(R.id.imageView);
-        TextView genero = (TextView) view.findViewById(R.id.textView);
+        TextView genero = (TextView) view.findViewById(R.id.tvGender);
         icon.setImageResource(gender[i]);
         genero.setText(genderString[i]);
         return view;
