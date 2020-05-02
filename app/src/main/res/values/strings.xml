@@ -17,6 +17,10 @@
     <!-- Entities -->
     <string name="category">Categoría</string>
     <string name="categories">Categorías</string>
+    <string name="movement">Movimiento</string>
+    <string name="movements">Movimientos</string>
+    <string name="expense">Gasto</string>
+    <string name="expenses">Gastos</string>
     <string name="income">Ingreso</string>
     <string name="incomes">Ingresos</string>
     <string name="budget">Presupuesto</string>
@@ -71,10 +75,15 @@
     <string name="login_forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="login_no_account">¿Aún no tienes una cuenta?</string>
     <string name="login_register_now">Regístrate gratis ahora</string>
+    <string name="login_error">Cuenta o contraseña incorrecta</string>
 
     <!-- Register View -->
     <string name="register_agree_terms">Acepto términos y condiciones</string>
     <string name="terms"> <a href="https://www.lipsum.com/">Términos y condiciones</a></string>
 
+    <!-- Dashboard View -->
+    <string name="dashboard_title">Dashboard</string>
+    <string name="dashboard_balance">Balance del mes actual</string>
+    <string name="dashboard_last_movements">Últimos movimientos</string>
 
 </resources>
