@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ExpenseCreate" />
+        <activity android:name=".MovementCreate" />
         <activity android:name=".MyAccount" />
         <activity android:name=".AccountLogin" />
 
