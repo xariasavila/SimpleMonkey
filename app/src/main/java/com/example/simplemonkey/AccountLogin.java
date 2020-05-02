@@ -2,7 +2,9 @@ package com.example.simplemonkey;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,7 @@ public class AccountLogin extends AppCompatActivity {
     String strEmail,strPass;
     Button btnLogin;
     TextView tvRegister;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,13 @@ public class AccountLogin extends AppCompatActivity {
         tilPassword = findViewById(R.id.tilPassword);
         btnLogin = findViewById(R.id.btnLogin);
         tvRegister = findViewById(R.id.tvRegister);
+
+        preferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+
+        if(preferences.contains("token")) {
+            Intent intent = new Intent(AccountLogin.this, MainActivity.class);
+            startActivity(intent);
+        }
 
         // TEXTVIEW REDIRECT A REGISTRO USUARIO
         tvRegister.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +64,17 @@ public class AccountLogin extends AppCompatActivity {
                 inputValidator.isRequired(tilPassword);
 
                 if(inputValidator.validate()){
-                    Intent intent = new Intent(v.getContext(), MainActivity.class);
-                    startActivity(intent);
+                    // Cambiar esto por inicio de sesión con Firebase
+                    if (strEmail.equals("test@gmail.com") && strPass.equals("test")) {
+                        SharedPreferences.Editor preferencesEditor = preferences.edit();
+                        preferencesEditor.putInt("uid", 000);
+                        preferencesEditor.commit();
+                        Intent intent = new Intent(v.getContext(), MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        tilPassword.getEditText().setText("");
+                        tilPassword.setError(getString(R.string.login_error));
+                    }
                 }
             }
         });

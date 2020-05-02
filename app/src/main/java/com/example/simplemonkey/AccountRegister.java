@@ -40,7 +40,7 @@ public class AccountRegister extends AppCompatActivity  implements AdapterView.O
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                final String selectedDate = String.format("%02d/%02d/%d", day,(month +1), year);
+                final String selectedDate = String.format("%d-%02d-%02d", year, (month +1), day);
                 til.getEditText().setText(selectedDate);
             }
         });
