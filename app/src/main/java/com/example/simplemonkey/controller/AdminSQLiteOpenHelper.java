@@ -24,6 +24,13 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
                 "    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP\n" +
                 ")");
+        db.execSQL("CREATE TRIGGER updated_at_category\n" +
+                "    AFTER UPDATE ON category\n" +
+                "BEGIN\n" +
+                "    UPDATE category\n" +
+                "    SET updated_at = CURRENT_TIMESTAMP\n" +
+                "    WHERE id = old.id;\n" +
+                "END");
         db.execSQL("CREATE TABLE debt (\n" +
                 "    id INTEGER PRIMARY KEY,\n" +
                 "    uid INTEGER NOT NULL,\n" +
@@ -40,6 +47,13 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
                 "    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP\n" +
                 ")");
+        db.execSQL("CREATE TRIGGER updated_at_debt\n" +
+                "    AFTER UPDATE ON debt\n" +
+                "BEGIN\n" +
+                "    UPDATE debt\n" +
+                "    SET updated_at = CURRENT_TIMESTAMP\n" +
+                "    WHERE id = old.id;\n" +
+                "END");
         db.execSQL("CREATE TABLE borrow (\n" +
                 "    id INTEGER PRIMARY KEY,\n" +
                 "    uid INTEGER NOT NULL,\n" +
@@ -58,6 +72,13 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
                 "    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP\n" +
                 ")");
+        db.execSQL("CREATE TRIGGER updated_at_borrow\n" +
+                "    AFTER UPDATE ON borrow\n" +
+                "BEGIN\n" +
+                "    UPDATE borrow\n" +
+                "    SET updated_at = CURRENT_TIMESTAMP\n" +
+                "    WHERE id = old.id;\n" +
+                "END");
         db.execSQL("CREATE TABLE saving (\n" +
                 "    id INTEGER PRIMARY KEY,\n" +
                 "    uid INTEGER NOT NULL,\n" +
@@ -73,6 +94,13 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
                 "    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP\n" +
                 ")");
+        db.execSQL("CREATE TRIGGER updated_at_saving\n" +
+                "    AFTER UPDATE ON saving\n" +
+                "BEGIN\n" +
+                "    UPDATE saving\n" +
+                "    SET updated_at = CURRENT_TIMESTAMP\n" +
+                "    WHERE id = old.id;\n" +
+                "END");
         db.execSQL("CREATE TABLE budget (\n" +
                 "    id INTEGER PRIMARY KEY,\n" +
                 "    uid INTEGER NOT NULL,\n" +
@@ -88,6 +116,13 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n" +
                 "    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP\n" +
                 ")");
+        db.execSQL("CREATE TRIGGER updated_at_budget\n" +
+                "    AFTER UPDATE ON budget\n" +
+                "BEGIN\n" +
+                "    UPDATE budget\n" +
+                "    SET updated_at = CURRENT_TIMESTAMP\n" +
+                "    WHERE id = old.id;\n" +
+                "END");
         db.execSQL("CREATE TABLE movement (\n" +
                 "    id INTEGER PRIMARY KEY,\n" +
                 "    uid INTEGER NOT NULL,\n" +
@@ -121,11 +156,19 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 "        ON UPDATE CASCADE\n" +
                 "        ON DELETE SET NULL\n" +
                 ")");
+        db.execSQL("CREATE TRIGGER updated_at_movement\n" +
+                "    AFTER UPDATE ON movement\n" +
+                "BEGIN\n" +
+                "    UPDATE movement\n" +
+                "    SET updated_at = CURRENT_TIMESTAMP\n" +
+                "    WHERE id = old.id;\n" +
+                "END");
+
         // TODO: Delete this line when retrofit implemented
-        db.execSQL("INSERT INTO category (name, description, color, icon, income, expense)\n" +
-                "VALUES ('Hogar', 'Es una categoría de prueba', 'red', 'home', 'true', 'true'),\n" +
-                "       ('Inversiones', 'Es otra prueba', 'blue', 'cog', 'true', 'true'),\n" +
-                "       ('Ahorro', 'Es otra prueba más', 'green', 'money', 'true', 'true');");
+        db.execSQL("INSERT INTO category (id, name, description, color, icon, income, expense)\n" +
+                "VALUES (1, 'Hogar', 'Es una categoría de prueba', 'red', 'home', 'true', 'true'),\n" +
+                "       (2, 'Inversiones', 'Es otra prueba', 'blue', 'cog', 'true', 'true'),\n" +
+                "       (3, 'Ahorro', 'Es otra prueba más', 'green', 'money', 'true', 'true')");
     }
 
     @Override
