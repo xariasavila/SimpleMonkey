@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.simplemonkey">
+    package="com.ciisa.simplemonkey">
 
     <application
         android:allowBackup="true"
@@ -10,17 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MovementCreate" />
-        <activity android:name=".MyAccount" />
-        <activity android:name=".AccountLogin" />
+        <activity android:name="com.ciisa.simplemonkey.MovementCreate" />
+        <activity android:name="com.ciisa.simplemonkey.MyAccount" />
+        <activity android:name="com.ciisa.simplemonkey.AccountLogin" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/app_id" />
 
-        <activity android:name=".AccountRegister" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SplashScreen" >
+        <activity android:name="com.ciisa.simplemonkey.AccountRegister" />
+        <activity android:name="com.ciisa.simplemonkey.MainActivity" />
+        <activity android:name="com.ciisa.simplemonkey.SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
