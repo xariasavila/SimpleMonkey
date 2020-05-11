@@ -1,8 +1,8 @@
 package com.example.simplemonkey.utils;
 
 public class PrimaryKeyGenerator {
-    public static int generate(int uid) {
+    public static long generate(long uid) {
         String strPrimaryKey = "" + uid + System.currentTimeMillis() / 1000L;;
-        return Integer.parseInt(strPrimaryKey);
+        return Long.parseLong(strPrimaryKey);
     }
 }

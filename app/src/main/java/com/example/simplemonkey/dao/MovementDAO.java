@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.example.simplemonkey.BuildConfig;
 import com.example.simplemonkey.controller.AdminSQLiteOpenHelper;
+import com.example.simplemonkey.model.Category;
 import com.example.simplemonkey.model.Movement;
 import com.example.simplemonkey.utils.DateConvert;
 import com.example.simplemonkey.utils.PrimaryKeyGenerator;
@@ -15,7 +16,7 @@ import com.example.simplemonkey.utils.PrimaryKeyGenerator;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MovementDAO implements InterfaceDAO<Movement> {
+public class MovementDAO implements InterfaceDAO<Movement, Long> {
 
     private Context context;
     private int uid;
@@ -44,11 +45,8 @@ public class MovementDAO implements InterfaceDAO<Movement> {
         registry.put("coordinates", movement.getCoordinates());
         registry.put("payday", movement.getPayday());
         registry.put("fee_number", movement.getFeeNumber());
-        registry.put("id_category", movement.getCategoryId());
-        registry.put("id_borrow", movement.getBorrowId());
-        registry.put("id_debt", movement.getDebtId());
-        registry.put("id_budget", movement.getBudgetId());
         registry.put("income", movement.isIncome());
+        registry.put("id_category", movement.getCategory().getId());
 
         if(database.insert(tableName, null, registry) != -1) {
             database.close();
@@ -60,18 +58,24 @@ public class MovementDAO implements InterfaceDAO<Movement> {
     }
 
     @Override
-    public ArrayList<Movement> findAll() {
+    public ArrayList<Movement> findAll(int limit) {
         admin = new AdminSQLiteOpenHelper(context, dbName, null, 1);
         SQLiteDatabase database = admin.getWritableDatabase();
 
-        Log.d("DAO.findAll", "QUERY TEST");
-        Cursor rows = database.rawQuery("SELECT id, uid, name, description, date, amount, currency, fee_number, payday, done, sync, coordinates, created_at, updated_at, id_category, id_budget, id_debt, id_borrow, income FROM " + tableName + " WHERE uid = " + uid + " ORDER BY date ASC", null);
-        Log.d("DAO.findAll", "QUERY PASSED");
+        Cursor rows = database.rawQuery("SELECT " +
+                        "m.id, m.uid, m.name, m.description, m.date, m.amount, m.currency, m.fee_number, m.payday, m.done, m.sync, m.income, c.id, c.name, c.description, c.color, c.icon " +
+                        "FROM movement m " +
+                        "LEFT JOIN category c " +
+                        "ON m.id_category = c.id " +
+                        "WHERE uid = ? " +
+                        "ORDER BY m.date DESC, m.created_at DESC " +
+                        "LIMIT ?",
+                    new String[] {Long.toString(uid), Integer.toString(limit)});
 
         ArrayList<Movement> resultList = new ArrayList<>();
 
         while(rows.moveToNext()) {
-            int id = Integer.parseInt(rows.getString(0));
+            long id = Long.parseLong(rows.getString(0));
             int uid = Integer.parseInt(rows.getString(1));
             String name = rows.getString(2);
             String description = rows.getString(3);
@@ -80,51 +84,54 @@ public class MovementDAO implements InterfaceDAO<Movement> {
             String currency = rows.getString(6);
             int feeNumber = Integer.parseInt(rows.getString(7));
             int payday = Integer.parseInt(rows.getString(8));
-            boolean done = Boolean.getBoolean(rows.getString(9));
-            boolean sync = Boolean.getBoolean(rows.getString(10));
-            String coordinates = rows.getString(11);
-            Date createdAt = DateConvert.stringToDateTime(rows.getString(12));
-            Date updatedAt = DateConvert.stringToDateTime(rows.getString(13));
-            int categoryId = Integer.parseInt(rows.getString(14));
-            int budgetId = Integer.parseInt(rows.getString(15));
-            int debtId = Integer.parseInt(rows.getString(16));
-            int borrowId = Integer.parseInt(rows.getString(17));
-            boolean income = Boolean.getBoolean(rows.getString(18));
+            boolean done = "1".equals(rows.getString(9));
+            boolean sync = "1".equals(rows.getString(10));
+            boolean income = "1".equals(rows.getString(11));
+            int categoryId = Integer.parseInt(rows.getString(12));
+            String categoryName = rows.getString(13);
+            String categoryDesc = rows.getString(14);
+            String categoryColor = rows.getString(15);
+            String categoryIcon = rows.getString(16);
 
-            Movement evaluation = new Movement(
-                    id,
-                    uid,
-                    name,
-                    description,
-                    date,
-                    amount,
-                    currency,
-                    sync,
-                    coordinates,
-                    createdAt,
-                    updatedAt,
-                    income,
-                    feeNumber,
-                    payday,
-                    done,
-                    categoryId,
-                    budgetId,
-                    debtId,
-                    borrowId
-            );
 
-            resultList.add(evaluation);
+            // Instancias
+            Movement movement = new Movement();
+            Category category = new Category(categoryId, categoryName, categoryDesc, categoryColor, categoryIcon);
+
+            // Atributos
+            movement.setId(id);
+            movement.setUid(uid);
+            movement.setName(name);
+            movement.setDescription(description);
+            movement.setDate(date);
+            movement.setAmount(amount);
+            movement.setCurrency(currency);
+            movement.setFeeNumber(feeNumber);
+            movement.setPayday(payday);
+            movement.setDone(done);
+            movement.setSync(sync);
+            movement.setIncome(income);
+            movement.setCategory(category);
+
+            resultList.add(movement);
         }
         database.close();
         return resultList;
     }
 
     @Override
-    public Movement findById(int id) {
+    public Movement findById(Long id) {
         admin = new AdminSQLiteOpenHelper(context, dbName, null, 1);
         SQLiteDatabase database = admin.getWritableDatabase();
 
-        Cursor row = database.rawQuery("SELECT name, description, date, amount, currency, fee_number, payday, done, sync, coordinates, created_at, updated_at, id_category, id_budget, id_debt, id_borrow, income FROM " + tableName + " WHERE uid = " + uid + " AND id = " + id + " ORDER BY date ASC", null);
+        Cursor row = database.rawQuery("SELECT " +
+                        "m.name, m.description, m.date, m.amount, m.currency, m.fee_number, m.payday, m.done, m.sync, m.income, c.id, c.name, c.description, c.color, c.icon " +
+                        "FROM movement m " +
+                        "LEFT JOIN category c " +
+                        "ON m.id_category = c.id " +
+                        "WHERE uid = ? AND id = ?",
+                new String[] {Long.toString(uid), Long.toString(id)});
+
         if(row.moveToFirst()) {
             String name = row.getString(0);
             String description = row.getString(1);
@@ -133,40 +140,36 @@ public class MovementDAO implements InterfaceDAO<Movement> {
             String currency = row.getString(4);
             int feeNumber = Integer.parseInt(row.getString(5));
             int payday = Integer.parseInt(row.getString(6));
-            boolean done = Boolean.getBoolean(row.getString(7));
-            boolean sync = Boolean.getBoolean(row.getString(8));
-            String coordinates = row.getString(9);
-            Date createdAt = DateConvert.stringToDateTime(row.getString(10));
-            Date updatedAt = DateConvert.stringToDateTime(row.getString(11));
-            int categoryId = Integer.parseInt(row.getString(12));
-            int budgetId = Integer.parseInt(row.getString(13));
-            int debtId = Integer.parseInt(row.getString(14));
-            int borrowId = Integer.parseInt(row.getString(15));
-            boolean income = Boolean.getBoolean(row.getString(16));
+            boolean done = "1".equals(row.getString(7));
+            boolean sync = "1".equals(row.getString(8));
+            boolean income = "1".equals(row.getString(9));
+            int categoryId = Integer.parseInt(row.getString(10));
+            String categoryName = row.getString(11);
+            String categoryDesc = row.getString(12);
+            String categoryColor = row.getString(13);
+            String categoryIcon = row.getString(14);
 
             database.close();
+            // Instancias
+            Movement movement = new Movement();
+            Category category = new Category(categoryId, categoryName, categoryDesc, categoryColor, categoryIcon);
 
-            return new Movement(
-                    id,
-                    uid,
-                    name,
-                    description,
-                    date,
-                    amount,
-                    currency,
-                    sync,
-                    coordinates,
-                    createdAt,
-                    updatedAt,
-                    income,
-                    feeNumber,
-                    payday,
-                    done,
-                    categoryId,
-                    budgetId,
-                    debtId,
-                    borrowId
-            );
+            // Atributos
+            movement.setId(id);
+            movement.setUid(uid);
+            movement.setName(name);
+            movement.setDescription(description);
+            movement.setDate(date);
+            movement.setAmount(amount);
+            movement.setCurrency(currency);
+            movement.setFeeNumber(feeNumber);
+            movement.setPayday(payday);
+            movement.setDone(done);
+            movement.setSync(sync);
+            movement.setIncome(income);
+            movement.setCategory(category);
+
+            return movement;
         } else {
             database.close();
             return null;
@@ -189,13 +192,10 @@ public class MovementDAO implements InterfaceDAO<Movement> {
         registry.put("coordinates", movement.getCoordinates());
         registry.put("payday", movement.getPayday());
         registry.put("fee_number", movement.getFeeNumber());
-        registry.put("id_category", movement.getCategoryId());
-        registry.put("id_borrow", movement.getBorrowId());
-        registry.put("id_debt", movement.getDebtId());
-        registry.put("id_budget", movement.getBudgetId());
         registry.put("income", movement.isIncome());
+        registry.put("id_category", movement.getCategory().getId());
 
-        boolean isUpdated = database.update(tableName, registry, "id = ?", new String[] {Integer.toString(movement.getId())}) > 0;
+        boolean isUpdated = database.update(tableName, registry, "id = ?", new String[] {Long.toString(movement.getId())}) > 0;
 
         if(isUpdated) {
             database.close();
@@ -207,7 +207,7 @@ public class MovementDAO implements InterfaceDAO<Movement> {
     }
 
     @Override
-    public boolean deleteById(int id) {
+    public boolean deleteById(Long id) {
         admin = new AdminSQLiteOpenHelper(context, dbName, null, 1);
         SQLiteDatabase database = admin.getWritableDatabase();
 

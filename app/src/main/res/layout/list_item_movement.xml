@@ -31,6 +31,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/date" />
 
+            <TextView
+                android:id="@+id/tvCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/category" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -42,11 +48,20 @@
             <TextView
                 android:id="@+id/tvAmount"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/amount"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="type"
+                android:textAlignment="textEnd"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
