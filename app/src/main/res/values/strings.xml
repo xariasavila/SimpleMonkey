@@ -79,11 +79,23 @@
 
     <!-- Register View -->
     <string name="register_agree_terms">Acepto términos y condiciones</string>
-    <string name="terms"> <a href="https://www.lipsum.com/">Términos y condiciones</a></string>
+    <string name="terms"><a href="https://www.lipsum.com/">Términos y condiciones</a></string>
 
     <!-- Dashboard View -->
     <string name="dashboard_title">Dashboard</string>
-    <string name="dashboard_balance">Balance del mes actual</string>
+    <string name="dashboard_balance">Balance</string>
     <string name="dashboard_last_movements">Últimos movimientos</string>
+    <string name="dashboard_btn_all_movements">Ver todos los movimientos</string>
+    <string name="dashboard_press_back">Presiona dos veces para salir de SimpleMonkey</string>
+    <string name="dashboard_expenses">Gastos por categoría</string>
+
+    <!-- Movement Views -->
+    <string name="movement_create_title">Registra un nuevo movimiento</string>
+    <string name="movement_select_type">Selecciona el tipo de movimiento</string>
+    <string name="movement_select_category">Selecciona una categoría</string>
+    <string-array name="movement_types">
+        <item>Gasto</item>
+        <item>Ingreso</item>
+    </string-array>
 
 </resources>

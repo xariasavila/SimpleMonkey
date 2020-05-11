@@ -67,7 +67,7 @@ public class AccountLogin extends AppCompatActivity {
                     // Cambiar esto por inicio de sesión con Firebase
                     if (strEmail.equals("test@gmail.com") && strPass.equals("test")) {
                         SharedPreferences.Editor preferencesEditor = preferences.edit();
-                        preferencesEditor.putInt("uid", 000);
+                        preferencesEditor.putInt("uid", 1000);
                         preferencesEditor.commit();
                         Intent intent = new Intent(v.getContext(), MainActivity.class);
                         startActivity(intent);

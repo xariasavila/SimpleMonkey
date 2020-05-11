@@ -166,9 +166,11 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
         // TODO: Delete this line when retrofit implemented
         db.execSQL("INSERT INTO category (id, name, description, color, icon, income, expense)\n" +
-                "VALUES (1, 'Hogar', 'Es una categoría de prueba', 'red', 'home', 'true', 'true'),\n" +
-                "       (2, 'Inversiones', 'Es otra prueba', 'blue', 'cog', 'true', 'true'),\n" +
-                "       (3, 'Ahorro', 'Es otra prueba más', 'green', 'money', 'true', 'true')");
+                "VALUES (1, 'Hogar', 'Es una categoría de prueba', '#33A1FD', 'home', 'true', 'true'),\n" +
+                "       (2, 'Inversiones', 'Es otra prueba', '#A60067', 'cog', 'true', 'true'),\n" +
+                "       (3, 'Ahorro', 'Es otra prueba más', '#43AA8B', 'money', 'true', 'true'),\n" +
+                "       (4, 'Salario', 'Súper salario', '#2BA84A', 'money', 'true', 'true'),\n" +
+                "       (100, 'Otro', 'Categoría otros', '#2D3A3A', 'nothing', 'true', 'true');");
     }
 
     @Override

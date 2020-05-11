@@ -1,6 +1,8 @@
 package com.example.simplemonkey.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import com.example.simplemonkey.R;
 import com.example.simplemonkey.model.Movement;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class MovementAdapter extends BaseAdapter {
@@ -45,11 +48,19 @@ public class MovementAdapter extends BaseAdapter {
         TextView tvName = convertView.findViewById(R.id.tvName);
         TextView tvAmount = convertView.findViewById(R.id.tvAmount);
         TextView tvDate = convertView.findViewById(R.id.tvDate);
+        TextView tvCategory = convertView.findViewById(R.id.tvCategory);
+        TextView tvType = convertView.findViewById(R.id.tvType);
 
         Movement movement = movements.get(position);
         tvName.setText(movement.getName());
-        tvAmount.setText(Double.toString(movement.getAmount()));
+        tvAmount.setText(NumberFormat.getInstance().format(movement.getAmount()) + " " + movement.getCurrency());
+        tvType.setTextColor(movement.isIncome() ? context.getColor(R.color.colorSuccess) : context.getColor(R.color.colorDanger));
         tvDate.setText(movement.getDateToString());
+        tvCategory.setText(movement.getCategory().getName());
+        tvCategory.setTextColor(Color.parseColor(movement.getCategory().getColor()));
+        tvType.setText(movement.isIncome() ? context.getText(R.string.income) : context.getText(R.string.expense));
+
+        Log.d("ADAPTER", movement.getName() + movement.isIncome());
 
         return convertView;
     }

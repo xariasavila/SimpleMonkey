@@ -51,23 +51,23 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/dashboard_balance"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/tvBalance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="$542.000"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+                    android:text="0 CLP"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="32dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -81,9 +81,25 @@
                 <ListView
                     android:id="@+id/lvMovements"
                     android:layout_width="match_parent"
-                    android:layout_height="202dp" />
+                    android:layout_height="280dp"
+                    android:layout_marginBottom="8dp" />
+
+                <Button
+                    android:id="@+id/btnAllMovements"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dashboard_btn_all_movements" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/dashboard_expenses"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/piechart"

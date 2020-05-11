@@ -5,7 +5,7 @@ import com.example.simplemonkey.utils.DateConvert;
 import java.util.Date;
 
 abstract class Finance {
-    private int id;
+    private long id;
     private int uid;
     private String name;
     private String description;
@@ -17,18 +17,7 @@ abstract class Finance {
     private Date updatedAt;
     private String coordinates;
 
-    public Finance(int id, int uid, String name, String description, Date date, double amount, String currency, Boolean sync, String coordinates, Date createdAt, Date updatedAt) {
-        this.id = id;
-        this.uid = uid;
-        this.name = name;
-        this.description = description;
-        this.date = date;
-        this.amount = amount;
-        this.currency = currency;
-        this.sync = sync;
-        this.coordinates = coordinates;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+    public Finance() {
     }
 
     public Finance(int uid, String name, String description, Date date, double amount, String currency) {
@@ -40,11 +29,11 @@ abstract class Finance {
         this.currency = currency;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

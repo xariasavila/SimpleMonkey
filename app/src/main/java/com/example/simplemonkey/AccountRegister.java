@@ -24,7 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class AccountRegister extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
+public class AccountRegister extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
 
     private Button btnRegister;
     String strFirstname, strLastname, strEmail, strGender, strBirth, strPass, strRepass;
@@ -63,9 +63,9 @@ public class AccountRegister extends AppCompatActivity  implements AdapterView.O
         tilBirth = findViewById(R.id.tilBirth);
         tilPassword = findViewById(R.id.tilPassword);
         tilRePassword = findViewById(R.id.tilRePassword);
-        cbTerms = (CheckBox) findViewById(R.id.cbTerms);
-        spnGender= (Spinner) findViewById(R.id.spGender);
-        tvTerms = (TextView) findViewById(R.id.tvTerms); // link terminos y condiciones
+        cbTerms = findViewById(R.id.cbTerms);
+        spnGender= findViewById(R.id.spGender);
+        tvTerms = findViewById(R.id.tvTerms); // link terminos y condiciones
 
         // Escucha e instancia el DatePicker
         tilBirth.getEditText().setOnClickListener(new View.OnClickListener() {
